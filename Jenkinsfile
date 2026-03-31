@@ -15,7 +15,7 @@ pipeline {
           stage('Checking 4xx and 5xx errors'){
               steps {
                   echo "##### SCANNING FOR ERRORS #####"
-                  bash "awk -F ' ' '$9 ~ /4[0-9]{2}|5[0-9]{2}/ {print $0}' /var/log/apache2/access.log"
+                  sh -c "awk -F ' ' '\$9 ~ /4[0-9]{2}|5[0-9]{2}/ {print \$0}' /var/log/apache2/access.log"
                 }
             }
       }
