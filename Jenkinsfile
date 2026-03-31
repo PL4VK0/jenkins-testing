@@ -4,11 +4,13 @@ pipeline {
         stage('Installing apache2'){
             steps {
                 echo "###### INSTALLING APACHE2 #####"
-                try {
-                  bash 'apt install -y apache2'
-                  echo "###### INSTALLING APACHE2 #####"
-                } catch (exc) {
-                    echo "##### FAILED INSTALLING APACHE2!!! #####"
+                script {
+                    try {
+                        sh "apt install -y apache2"
+                        echo "##### SUCCESS!!! #####"
+                      } catch (exc) {
+                        echo "SOMETHING WENT WRONG!!!"
+                      }
                   }
               }
           }
