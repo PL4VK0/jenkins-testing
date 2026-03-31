@@ -6,7 +6,7 @@ pipeline {
                 echo "###### INSTALLING APACHE2 #####"
                 script {
                     try {
-                        sh "apt install -y apache2"
+                        sh "sudo apt install -y apache2"
                         echo "##### SUCCESS!!! #####"
                       } catch (exc) {
                         echo "SOMETHING WENT WRONG!!!"
@@ -17,7 +17,7 @@ pipeline {
           stage('Checking 4xx and 5xx errors'){
               steps {
                   echo "##### SCANNING FOR ERRORS #####"
-                  sh '''awk '$9 ~ /4[0-9]{2}|5[0-9]{2}/ {print $0}' /var/log/apache2/access.log '''
+                  sh ''' sudo awk '$9 ~ /4[0-9]{2}|5[0-9]{2}/ {print $0}' /var/log/apache2/access.log '''
                 }
             }
       }
